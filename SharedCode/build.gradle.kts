@@ -67,6 +67,19 @@ val packForXcode by tasks.creating(Sync::class) {
         """.trimIndent()
         )
         gradleWrapper.setExecutable(true)
+
+        /*
+        // Dump the list of files this depends on.
+        // This could be used as an input to the Run Script build phase to shortcut even having to launch Gradle.
+        // Or you can just not have an inputs list, and Gradle will always be run, but can then conclude it doesn't have any work to do and exit.
+        // Since the CONFIGURATION isn't tracked in this, that's probably needed for correctness. :\
+        val xcfilelist = File(targetDir, "inputs.xcfilelist")
+        val paths =
+            framework.compilation
+                .compileKotlinTask.inputs
+                .sourceFiles.map { it.path }
+        xcfilelist.writeText(paths.joinToString(separator="\n", postfix="\n"))
+         */
     }
 }
 

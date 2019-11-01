@@ -300,8 +300,6 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"$(SRCROOT)/../../SharedCode/src/commonMain/**",
-				"$(SRCROOT)/../../SharedCode/src/iosMain/**",
 			);
 			name = "Build SharedCode.framework";
 			outputFileListPaths = (
