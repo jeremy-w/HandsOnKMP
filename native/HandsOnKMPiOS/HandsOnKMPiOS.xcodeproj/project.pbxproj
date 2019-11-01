@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F75236F236CA020005DAC62 /* SharedCode.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F75236E236CA020005DAC62 /* SharedCode.framework */; };
+		3F752370236CA020005DAC62 /* SharedCode.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 3F75236E236CA020005DAC62 /* SharedCode.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		3FC207C4236A285B002663CF /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC207C3236A285B002663CF /* AppDelegate.swift */; };
 		3FC207C6236A285B002663CF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC207C5236A285B002663CF /* SceneDelegate.swift */; };
 		3FC207C8236A285B002663CF /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FC207C7236A285B002663CF /* ContentView.swift */; };
@@ -34,7 +36,22 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		3F752371236CA020005DAC62 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				3F752370236CA020005DAC62 /* SharedCode.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		3F75236E236CA020005DAC62 /* SharedCode.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SharedCode.framework; path = "../../SharedCode/build/xcode-frameworks/SharedCode.framework"; sourceTree = "<group>"; };
 		3FC207C0236A285B002663CF /* HandsOnKMPiOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HandsOnKMPiOS.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3FC207C3236A285B002663CF /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		3FC207C5236A285B002663CF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -56,6 +73,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F75236F236CA020005DAC62 /* SharedCode.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -76,6 +94,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F75236D236CA020005DAC62 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3F75236E236CA020005DAC62 /* SharedCode.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		3FC207B7236A285B002663CF = {
 			isa = PBXGroup;
 			children = (
@@ -83,6 +109,7 @@
 				3FC207D9236A285D002663CF /* HandsOnKMPiOSTests */,
 				3FC207E4236A285D002663CF /* HandsOnKMPiOSUITests */,
 				3FC207C1236A285B002663CF /* Products */,
+				3F75236D236CA020005DAC62 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -147,6 +174,7 @@
 				3FC207BC236A285B002663CF /* Sources */,
 				3FC207BD236A285B002663CF /* Frameworks */,
 				3FC207BE236A285B002663CF /* Resources */,
+				3F752371236CA020005DAC62 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -377,6 +405,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks/";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -437,6 +466,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_SEARCH_PATHS = "$(SRCROOT)/../../SharedCode/build/xcode-frameworks/";
 				GCC_C_LANGUAGE_STANDARD = gnu11;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
