@@ -57,7 +57,8 @@ val packForXcode by tasks.creating(Sync::class) {
             #!/bin/bash
             export 'JAVA_HOME=${System.getProperty("java.home")}'
             cd '${rootProject.rootDir}'
-            ./gradlew \$@
+            ./gradlew "$@"
+
         """.trimIndent()
         )
         gradleWrapper.setExecutable(true)
