@@ -6,9 +6,12 @@ plugins {
 
 kotlin {
     val iOSTarget: (String, KotlinNativeTarget.() -> Unit) -> KotlinNativeTarget =
-        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true) ::iosArm64 else ::iosX64
+        if (System.getenv("SDK_NAME")?.startsWith("iphoneos") == true)
+            ::iosArm64
+        else
+            ::iosX64
 
-    // build SharedCode.framework
+    // Build SharedCode.framework
     iOSTarget("ios") {
         binaries {
             framework {
@@ -34,29 +37,31 @@ kotlin {
 // Replace the destination directory with the source files.
 // (It's Sync-like-rsync, not Sync-like-atomic.)
 val packForXcode by tasks.creating(Sync::class) {
-    /* Figure out where the framework got compiled too, and mark the build type as a build input */
-    // Apparently we're expecting to be run by xcodebuild?
+    // Let xcodebuild CONFIGURATION pick the kind of framework
     val mode = System.getenv("CONFIGURATION") ?: "DEBUG"
-    // Surface this external info to the build system as an input.
-    // This way, changing mode will cause a rebuild.
+    // Tell Gradle "mode" factors into what we're building.
+    // This way, changing CONFIGURATION will cause a rebuild.
     inputs.property("mode", mode)
-    val framework = kotlin.targets.getByName<KotlinNativeTarget>("ios").binaries.getFramework(mode)
+    // Tell Gradle to link the framework for that configuration before running packForXcode.
+    val framework =
+        kotlin.targets
+            .getByName<KotlinNativeTarget>("ios")
+            .binaries.getFramework(mode)
     dependsOn(framework.linkTask)
 
-    /* Rig up the Sync from-to */
-    // Declare the source paths for this Sync task.
+    // Configure the paths to keep in sync
     from({ framework.outputDirectory })
-    // And the destination path.
     val targetDir = File(buildDir, "xcode-frameworks")
     into(targetDir)
 
+    // After syncing, add a script to ensure xcodebuild uses the correct Java when calling gradlew.
     doLast {
         val gradleWrapper = File(targetDir, "gradlew")
         gradleWrapper.writeText(
             """
             #!/bin/bash
             export 'JAVA_HOME=${System.getProperty("java.home")}'
-            cd '${rootProject.rootDir}'
+            cd '${rootProject.rootDir}' || exit 1
             ./gradlew "$@"
 
         """.trimIndent()
