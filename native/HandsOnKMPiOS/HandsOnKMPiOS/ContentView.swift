@@ -27,7 +27,7 @@ struct ContentView: View {
                  It does not seem to be in the generated Obj-C symbol table,
                  though it is amongst in the unexported text symbols that you can dump using `nm`.
                  */
-                let message = CommonKt.createApplicationScreenMessage()
+                let message = CommonKt.canYouDebugMe(value: "artichoke")
                 NSLog("lo, i have done the thing, and the message is: \(message)")
             }) {
                 Text(NSLocalizedString("Do The Thing", comment: "button title"))

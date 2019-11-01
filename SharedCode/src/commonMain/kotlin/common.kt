@@ -11,3 +11,11 @@ expect fun platformName(): String
  */
 fun createApplicationScreenMessage() =
     "Kotlin Rocks on ${platformName()}"
+
+fun canYouDebugMe(value: String): String {
+    val isMatch = value.contains('a')
+    val happy = "it's a match!"
+    val sad = "better luck next time eh?"
+    val result = if (isMatch) happy else sad
+    return result
+}
