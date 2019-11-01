@@ -311,7 +311,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\"\n./gradlew :SharedCode:packForXCode\n";
+			shellScript = "# shellcheck disable=SC2015\ncd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\" && test -x ./gradlew || {\n  echo \"Initial build of SharedCode:packForXcode must be done from Android Studio in order to record JAVA_HOME.\" >&2\n  exit 1\n}\n./gradlew :SharedCode:packForXcode\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
