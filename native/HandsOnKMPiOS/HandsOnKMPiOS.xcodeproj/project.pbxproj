@@ -143,6 +143,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 3FC207EA236A285D002663CF /* Build configuration list for PBXNativeTarget "HandsOnKMPiOS" */;
 			buildPhases = (
+				3F75236C236C7E42005DAC62 /* Build SharedCode.framework */,
 				3FC207BC236A285B002663CF /* Sources */,
 				3FC207BD236A285B002663CF /* Frameworks */,
 				3FC207BE236A285B002663CF /* Resources */,
@@ -261,6 +262,30 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		3F75236C236C7E42005DAC62 /* Build SharedCode.framework */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/../../SharedCode/src/commonMain/**",
+				"$(SRCROOT)/../../SharedCode/src/iosMain/**",
+			);
+			name = "Build SharedCode.framework";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(SRCROOT)/../../SharedCode/build/xcode-frameworks/SharedCode.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd \"$SRCROOT/../../SharedCode/build/xcode-frameworks\"\n./gradlew :SharedCode:packForXCode\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		3FC207BC236A285B002663CF /* Sources */ = {
