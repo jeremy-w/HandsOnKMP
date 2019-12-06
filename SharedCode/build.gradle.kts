@@ -20,13 +20,14 @@ kotlin {
         }
     }
 
-    // Build android.jar
-    jvm("android")
-
     // Use the Kotlin/Native stdlib
     sourceSets["commonMain"].dependencies {
         implementation("org.jetbrains.kotlin:kotlin-stdlib-common")
     }
+
+
+    // Build android.jar
+    jvm("android")
 
     // Use the Kotlin/JVM stdlib
     sourceSets["androidMain"].dependencies {
