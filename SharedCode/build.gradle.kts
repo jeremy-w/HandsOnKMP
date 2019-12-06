@@ -28,6 +28,9 @@ kotlin {
 
     // Build JavaScript module.
     js("js")
+    sourceSets["jsMain"].dependencies {
+        implementation(kotlin("stdlib-js"))
+    }
 
 
     // Build android.jar
