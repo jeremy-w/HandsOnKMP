@@ -26,6 +26,10 @@ kotlin {
     }
 
 
+    // Build JavaScript module.
+    js("js")
+
+
     // Build android.jar
     jvm("android")
 
